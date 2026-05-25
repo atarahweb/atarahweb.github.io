@@ -8,7 +8,55 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@1,600&display=swap');
+        /* --- CONFIGURAZIONE LOCALE DEI FONT --- */
+        
+        /* Syncopate Regular */
+        @font-face {
+            font-family: 'Syncopate';
+            font-style: normal;
+            font-weight: 400;
+            src: url('fonts/Syncopate-Regular.ttf') format('truetype');
+        }
+        
+        /* Syncopate Bold */
+        @font-face {
+            font-family: 'Syncopate';
+            font-style: normal;
+            font-weight: 700;
+            src: url('fonts/Syncopate-Bold.ttf') format('truetype');
+        }
+
+        /* Inter Light (300) */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            src: url('fonts/Inter_18pt-ExtraLight.ttf') format('truetype');
+        }
+
+        /* Inter Regular (400) */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            src: url('fonts/Inter_18pt-Regular.ttf') format('truetype');
+        }
+
+        /* Inter SemiBold (600) */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            src: url('fonts/Inter_18pt-SemiBold.ttf') format('truetype');
+        }
+
+        /* Playfair Display SemiBold Italic (600 Italic) */
+        @font-face {
+            font-family: 'Playfair Display';
+            font-style: italic;
+            font-weight: 600;
+            src: url('fonts/PlayfairDisplay-SemiBoldItalic.ttf') format('truetype');
+        }
 
         :root {
             --nls-yellow: #fcd53f;
@@ -220,9 +268,8 @@
         <div style="font-family: 'Syncopate'; font-size: 0.5rem; letter-spacing: 1px; opacity: 0.7;">PARTNER PROGRAM</div>
     </nav>
 
-    <!-- HERO SECTION CON FIX IMMAGINE -->
     <section class="hero">
-        <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop" class="hero-img-bg" alt="Hero Background">
+        <img src="images/hero-bg.webp" class="hero-img-bg" alt="Hero Background">
         <div class="hero-overlay"></div>
         
         <h2 data-aos="fade-up">L'Arte della Luce incontra il tuo Business</h2>
@@ -233,7 +280,6 @@
         <a href="#progetto" class="btn-luxury" data-aos="zoom-in" data-aos-delay="600">SCOPRI DI PIÙ</a>
     </section>
 
-    <!-- SEZIONE RUOLO CON FIX IMMAGINE -->
     <section id="progetto" class="section-padding">
         <div class="section-title" data-aos="fade-up">
             <p>Il Tuo Ruolo</p>
@@ -242,7 +288,7 @@
 
         <div class="role-container" data-aos="fade-up">
             <div class="role-image-box">
-                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop" alt="Collaborazione">
+                <img src="images/collaborazione.webp" alt="Collaborazione">
             </div>
             <div class="role-content">
                 <h3 style="font-family: 'Syncopate'; margin-bottom: 20px; font-size: 1rem;">COME FUNZIONA</h3>
@@ -256,7 +302,6 @@
         </div>
     </section>
 
-    <!-- PACCHETTI -->
     <section class="section-padding" style="background: rgba(255,255,255,0.01);">
         <div class="section-title" data-aos="fade-up">
             <p>I Servizi</p>
@@ -299,7 +344,6 @@
         </div>
     </section>
 
-    <!-- GUADAGNI -->
     <section class="section-padding">
         <div class="earnings-box" data-aos="zoom-in">
             <h2 style="font-family: 'Syncopate'; margin-bottom: 15px; font-size: clamp(1rem, 5vw, 1.5rem);">GUADAGNI</h2>
