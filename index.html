@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NLS | Nova Light Studio - Partner Program 2026</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@1,600&display=swap');
+
+        :root {
+            --nls-yellow: #fcd53f;
+            --nls-gold: #c5a021;
+            --bg-dark: #050505;
+            --card-glass: rgba(15, 15, 15, 0.9);
+            --border-white: rgba(255, 255, 255, 0.1);
+            --text-gray: #a0a0a0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body { 
+            background-color: var(--bg-dark); 
+            color: white; 
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* EFFETTO LENS FLARE */
+        .lens-flare {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(252, 213, 63, 0.07) 0%, transparent 60%);
+            z-index: 10;
+        }
+
+        nav { 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: fixed; 
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-white);
+        }
+        .logo { font-family: 'Syncopate', sans-serif; font-weight: 700; letter-spacing: 3px; font-size: 0.85rem; }
+        .logo span { color: var(--nls-yellow); }
+
+        /* --- FIX IMMAGINE HERO --- */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            padding: 0 8%;
+        }
+
+        .hero-img-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--bg-dark));
+            z-index: -1;
+        }
+
+        .hero h2 { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(0.9rem, 4vw, 1.8rem); color: var(--nls-yellow); margin-bottom: 15px; z-index: 2; }
+        .hero h1 { font-family: 'Syncopate', sans-serif; font-size: clamp(2rem, 10vw, 5.5rem); line-height: 1.1; letter-spacing: -1px; margin-bottom: 25px; z-index: 2; }
+
+        /* --- SEZIONI --- */
+        .section-padding { padding: 80px 5%; position: relative; z-index: 2; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-family: 'Syncopate', sans-serif; font-size: clamp(1.2rem, 5vw, 1.8rem); letter-spacing: 5px; margin-bottom: 10px; }
+        .section-title p { color: var(--nls-yellow); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; }
+
+        /* --- FIX IMMAGINE RUOLO --- */
+        .role-container {
+            display: flex;
+            background: var(--card-glass);
+            border: 1px solid var(--border-white);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            flex-direction: row;
+            min-height: 450px;
+        }
+
+        .role-image-box {
+            flex: 1;
+            position: relative;
+            min-height: 300px;
+        }
+
+        .role-image-box img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .role-content {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* --- CARDS & GRID --- */
+        .grid-layout { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+        }
+
+        .card {
+            background: var(--card-glass);
+            border: 1px solid var(--border-white);
+            padding: 35px 25px;
+            border-radius: 8px;
+            transition: 0.4s ease;
+        }
+        .card h3 { font-family: 'Syncopate', sans-serif; font-size: 1rem; margin-bottom: 15px; }
+        .price-tag { font-family: 'Syncopate', sans-serif; font-size: 2.2rem; color: var(--nls-yellow); margin-bottom: 25px; }
+        
+        .feature-list { list-style: none; }
+        .feature-list li { 
+            margin-bottom: 12px; 
+            color: var(--text-gray); 
+            font-size: 0.85rem;
+            display: flex;
+            align-items: flex-start;
+            line-height: 1.4;
+        }
+        .feature-list li i { color: var(--nls-yellow); margin-right: 12px; margin-top: 3px; font-size: 0.7rem; }
+
+        /* --- GUADAGNI --- */
+        .earnings-box {
+            background: linear-gradient(145deg, #0f0f0f, #050505);
+            border: 1px solid var(--nls-yellow);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .earnings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .earn-item h4 { font-family: 'Syncopate', sans-serif; font-size: 1.6rem; margin-bottom: 5px; }
+        .earn-item p { font-size: 0.8rem; color: var(--text-gray); }
+
+        /* --- BOTTONI --- */
+        .btn-luxury {
+            display: inline-block;
+            border: 1px solid var(--nls-yellow);
+            color: var(--nls-yellow);
+            padding: 16px 35px;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: 0.4s;
+            background: transparent;
+            z-index: 5;
+        }
+        .btn-luxury:hover { background: var(--nls-yellow); color: black; }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero { height: 85vh; }
+            .role-container { flex-direction: column; }
+            .role-image-box { height: 250px; min-height: 250px; }
+            .role-content { padding: 30px 20px; }
+            .earnings-grid { grid-template-columns: 1fr; }
+            .earn-item { border: none !important; border-bottom: 1px solid var(--border-white) !important; padding-bottom: 15px; }
+            .earn-item:last-child { border: none !important; }
+        }
+
+        footer { 
+            padding: 50px 5%; 
+            text-align: center; 
+            font-family: 'Syncopate', sans-serif; 
+            font-size: 0.6rem; 
+            letter-spacing: 3px; 
+            opacity: 0.5;
+            line-height: 2;
+        }
+
+        .highlight { color: var(--nls-yellow); }
+    </style>
+</head>
+<body>
+
+    <div class="lens-flare" id="flare"></div>
+
+    <nav>
+        <div class="logo">NOVA <span>LIGHT</span> STUDIO</div>
+        <div style="font-family: 'Syncopate'; font-size: 0.5rem; letter-spacing: 1px; opacity: 0.7;">PARTNER PROGRAM</div>
+    </nav>
+
+    <!-- HERO SECTION CON FIX IMMAGINE -->
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop" class="hero-img-bg" alt="Hero Background">
+        <div class="hero-overlay"></div>
+        
+        <h2 data-aos="fade-up">L'Arte della Luce incontra il tuo Business</h2>
+        <h1 data-aos="fade-up" data-aos-delay="200">PARTNER <br> <span class="highlight">PROGRAM</span></h1>
+        <p style="color: var(--text-gray); max-width: 500px; margin-bottom: 30px; line-height: 1.6; z-index: 2;" data-aos="fade-up" data-aos-delay="400">
+            Connetti i brand d'eccellenza alla nostra visione cinematografica. Nessun investimento, solo la tua rete.
+        </p>
+        <a href="#progetto" class="btn-luxury" data-aos="zoom-in" data-aos-delay="600">SCOPRI DI PIÙ</a>
+    </section>
+
+    <!-- SEZIONE RUOLO CON FIX IMMAGINE -->
+    <section id="progetto" class="section-padding">
+        <div class="section-title" data-aos="fade-up">
+            <p>Il Tuo Ruolo</p>
+            <h2>PROCACCIATORE NLS</h2>
+        </div>
+
+        <div class="role-container" data-aos="fade-up">
+            <div class="role-image-box">
+                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop" alt="Collaborazione">
+            </div>
+            <div class="role-content">
+                <h3 style="font-family: 'Syncopate'; margin-bottom: 20px; font-size: 1rem;">COME FUNZIONA</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-search"></i> <span><strong>Individua:</strong> Trova attività che desiderano una comunicazione d'élite.</span></li>
+                    <li><i class="fas fa-handshake"></i> <span><strong>Connetti:</strong> Presenta la nostra visione e i 3 pacchetti esclusivi.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Guadagna:</strong> Passaci il contatto. Se chiudiamo, la commissione è tua.</span></li>
+                    <li><i class="fas fa-user-tie"></i> <span><strong>Zero Stress:</strong> Tu apri la porta, noi gestiamo produzione e vendita.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- PACCHETTI -->
+    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
+        <div class="section-title" data-aos="fade-up">
+            <p>I Servizi</p>
+            <h2>I NOSTRI PACCHETTI</h2>
+        </div>
+
+        <div class="grid-layout">
+            <div class="card" data-aos="fade-up">
+                <p class="highlight" style="font-size: 0.6rem; letter-spacing: 2px; margin-bottom: 5px;">BASE</p>
+                <h3>SOCIAL STARTER</h3>
+                <div class="price-tag">250€</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> 4 Video mensili</li>
+                    <li><i class="fas fa-check"></i> Mix Fotocamera/Smartphone</li>
+                    <li><i class="fas fa-check"></i> Grafiche incluse</li>
+                </ul>
+            </div>
+
+            <div class="card" data-aos="fade-up" data-aos-delay="100" style="border-color: var(--nls-gold);">
+                <p class="highlight" style="font-size: 0.6rem; letter-spacing: 2px; margin-bottom: 5px;">POPULAR</p>
+                <h3>GROWTH PACK</h3>
+                <div class="price-tag">500€</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Video Editing Pro</li>
+                    <li><i class="fas fa-check"></i> 5 Scatti Professionali</li>
+                    <li><i class="fas fa-check"></i> Grafiche Social Avanzate</li>
+                </ul>
+            </div>
+
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <p class="highlight" style="font-size: 0.6rem; letter-spacing: 2px; margin-bottom: 5px;">ELITE</p>
+                <h3>PRO CINEMATIC</h3>
+                <div class="price-tag">800€</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Strategia Marketing Completa</li>
+                    <li><i class="fas fa-check"></i> Video 4K + Drone</li>
+                    <li><i class="fas fa-check"></i> Brand Identity Totale</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- GUADAGNI -->
+    <section class="section-padding">
+        <div class="earnings-box" data-aos="zoom-in">
+            <h2 style="font-family: 'Syncopate'; margin-bottom: 15px; font-size: clamp(1rem, 5vw, 1.5rem);">GUADAGNI</h2>
+            <p style="color: var(--text-gray); font-size: 0.9rem;">Commissione fissa sul pacchetto PRO: <span class="highlight">100€</span></p>
+            
+            <div class="earnings-grid">
+                <div class="earn-item">
+                    <h4>500€</h4>
+                    <p>Con 5 Clienti</p>
+                </div>
+                <div class="earn-item" style="border-left: 1px solid var(--border-white); border-right: 1px solid var(--border-white);">
+                    <h4>1000€</h4>
+                    <p>Con 10 Clienti</p>
+                </div>
+                <div class="earn-item">
+                    <h4 class="highlight">+Bonus</h4>
+                    <p>Extra su obiettivi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="text-align: center;">
+        <h2 style="font-family: 'Syncopate'; font-size: 1.8rem; margin-bottom: 20px;" data-aos="fade-up">INIZIAMO?</h2>
+        <a href="https://wa.me/TUONUMERO" class="btn-luxury" data-aos="fade-up">CONTATTACI SU WHATSAPP</a>
+    </section>
+
+    <footer>
+        NOVA LIGHT STUDIO // 2026 <br>
+        VISUAL EXCELLENCE
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+        
+        // Mouse Lens Flare Effect
+        const flare = document.getElementById('flare');
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            flare.style.setProperty('--x', x + '%');
+            flare.style.setProperty('--y', y + '%');
+        });
+    </script>
+</body>
+</html>
